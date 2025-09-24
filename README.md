@@ -56,3 +56,13 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 ```
 
 You can obtain these credentials by registering your application with GitHub and Google.
+
+## Authentication & Migrations
+
+This project uses **better-auth** for authentication, supporting email/password and social logins (GitHub, Google). The configuration is located in `src/app/(auth)/auth.ts`.
+
+- **better-auth** handles user sessions, credential validation, and integration with social providers.
+- The SQLite database (`sqlite.db`) stores user and session data.
+- Database migrations for authentication are managed in the `better-auth_migrations` folder.
+
+Refer to the [better-auth documentation](https://www.npmjs.com/package/better-auth) for advanced configuration and usage details.
