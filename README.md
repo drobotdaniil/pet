@@ -31,7 +31,6 @@ npm run lint       # Lint code
 	- `blogs`, `profile`: Feature pages
 - `public`: Static assets
 - `better-auth_migrations`: Database migrations
-- `sqlite.db`: SQLite database
 
 ## Features
 - User authentication (sign-in, sign-up, logout)
@@ -66,3 +65,23 @@ This project uses **better-auth** for authentication, supporting email/password 
 - Database migrations for authentication are managed in the `better-auth_migrations` folder.
 
 Refer to the [better-auth documentation](https://www.npmjs.com/package/better-auth) for advanced configuration and usage details.
+
+
+## Creating the SQLite Database
+
+Before running the application for the first time, create the `sqlite.db` database file and apply migrations using [@better-auth/cli](https://www.npmjs.com/package/@better-auth/cli) and your config:
+
+1. Install the CLI (once):
+	```bash
+	npm install --save-dev @better-auth/cli
+	```
+2. Generate migrations (if needed):
+	```bash
+	npx @better-auth/cli generate --config ./src/app/(auth)/auth.ts
+	```
+3. Apply migrations:
+	```bash
+	npx @better-auth/cli migrate --config ./src/app/(auth)/auth.ts
+	```
+4. After this, the `sqlite.db` file will be created with the required structure.
+
