@@ -1,11 +1,12 @@
 # Pet — Custom Web Application
 
 ## Overview
-This project is a modern web application built with Next.js and TypeScript, featuring custom authentication, theming, and a component-based architecture. It uses SQLite for data storage and follows best practices for scalable React development.
+This project is a modern web application built with Next.js and TypeScript, featuring custom authentication, theming, internationalization and a component-based architecture. It uses SQLite for data storage and follows best practices for scalable React development.
 
 ## Technologies Used
 - Next.js (React framework)
 - TypeScript
+- next-intl
 - ESLint
 - SQLite
 - Modern React (hooks, functional components)
@@ -24,17 +25,20 @@ npm run lint       # Lint code
 ```
 
 ## Project Structure
-- `src/app`: Main application code
+- `src/app/[locale]`: Main application code
 	- `(auth)`: Authentication logic and views
 	- `components`: Reusable UI components
 	- `api`: API routes (Next.js)
 	- `blogs`, `profile`: Feature pages
+- `src/i18n`: Internationalization config
+- `src/middleware.ts` - to handle internationalization
 - `public`: Static assets
 - `better-auth_migrations`: Database migrations
 
 ## Features
 - User authentication (sign-in, sign-up, logout)
 - Blog and profile pages
+- Locale switcher
 - Themed UI
 - Navigation and layout components
 
@@ -77,11 +81,11 @@ Before running the application for the first time, create the `sqlite.db` databa
 	```
 2. Generate migrations (if needed):
 	```bash
-	npx @better-auth/cli generate --config ./src/app/(auth)/auth.ts
+	npx @better-auth/cli generate --config ./src/app/\[locale\]/\(auth\)/auth.ts
 	```
 3. Apply migrations:
 	```bash
-	npx @better-auth/cli migrate --config ./src/app/(auth)/auth.ts
+	npx @better-auth/cli migrate --config ./src/app/\[locale\]/\(auth\)/auth.ts
 	```
 4. After this, the `sqlite.db` file will be created with the required structure.
 
