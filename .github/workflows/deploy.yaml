@@ -1,0 +1,36 @@
+name: Check pull request
+run-name: ${{ github.actor }} is checking his pull request
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  Preparation-and-Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        uses: ./.github/composite-actions/install-deps
+
+      - name: Create .env file
+        run: |
+          echo "BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}" >> .env
+          echo "BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}" >> .env
+          echo "GITHUB_CLIENT_ID=${{ secrets.GH_CLIENT_ID }}" >> .env
+          echo "GITHUB_CLIENT_SECRET=${{ secrets.GH_CLIENT_SECRET }}" >> .env
+          echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env
+          echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> .env
+
+      - name: Check that project builds successfully
+        run: |
+          npm run build
+
+      - name: Imitate deploy
+        run: |
+          echo "Deploy..."
+
+

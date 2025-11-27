@@ -13,15 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
-
-      - name: Install dependencies
-        run: |
-          npm ci
+      - name: Install deps
+        uses: ./.github/composite-actions/install-deps
 
       - name: Run linters
         run: |
