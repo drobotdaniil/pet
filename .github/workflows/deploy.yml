@@ -1,5 +1,4 @@
-name: Check pull request
-run-name: ${{ github.actor }} is checking his pull request
+name: Build and Deploy
 
 on:
   push:
@@ -7,7 +6,7 @@ on:
       - main
 
 jobs:
-  Preparation-and-Build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
